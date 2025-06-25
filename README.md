@@ -78,6 +78,30 @@ docker run --rm -v stronghodl_data:/data -v $(pwd):/backup alpine \
 - Health check: `curl http://localhost:3000/api/health`
 - System status: `curl http://localhost:3000/api/system/status`
 
+## 🔄 CI/CD Pipeline
+
+This project uses GitHub Actions for automated building and testing:
+
+### Docker Images
+- **Main branch**: Creates `latest` and `main-{sha}` tags
+- **Dev branch**: Creates `dev` and `dev-{sha}` tags
+- **Pull Requests**: Builds test images (not pushed)
+
+### Available Images
+```bash
+# Latest stable release
+docker pull thewilqq/stronghodl:latest
+
+# Development version
+docker pull thewilqq/stronghodl:dev
+```
+
+### Automated Checks
+- Code linting and type checking
+- Next.js build verification
+- Docker build verification
+- Runs on all PRs and pushes
+
 ## 📚 Documentation
 
 - **[Database Schema](docs/DATABASE.md)** - Complete SQL structure, tables, and query examples
